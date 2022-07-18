@@ -7,9 +7,9 @@ pipeline {
     }
 
     //Define Fixed Parameter
-    parameters {
-        choice(name: 'ref', choices:['integration'], description: 'Github branch for deployment')
-    }
+    //parameters {
+   //     choice(name: 'ref', choices:['integration'], description: 'Github branch for deployment')
+    //}
 
     options {
         buildDiscarder logRotator( 
@@ -32,12 +32,13 @@ pipeline {
                 script{
                     if(params.current_status == "closed" && params.merged == true){
                         if(params.ref == 'integration') {
-                            build job: 'Integration_Deployment', 
-                            parameters: [
-                                string(name: 'BRANCH_NAME', value: params.ref)
-                            ]
+                            echo "Requested PR is merged"
+                            //build job: 'Integration_Deployment', 
+                            //parameters: [
+                                //string(name: 'BRANCH_NAME', value: params.ref)
+                            //]
                         }else{
-                            echo "Magennto Cloud branch were not found in the merge request"
+                            echo "Requested PR is not merged now"
                             currentBuild.result = 'FAILURE'
                             return
                         }

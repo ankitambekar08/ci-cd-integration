@@ -8,7 +8,7 @@ pipeline {
 
     //Define Fixed Parameter
     parameters {
-        choice(name: 'ref', choices:['integration'], description: 'Github branch for deployment')
+        choice(name: 'ref', choices:['development'], description: 'Github branch for deployment')
     }
 
     options {
@@ -31,7 +31,7 @@ pipeline {
             steps{
                 script{
                     if(params.pull_request_status == "closed" && params.merged_status == true){
-                        if(params.ref == 'integration') {
+                        if(params.ref == 'development') {
                             echo "Requested PR is merged"
                             //build job: 'Integration_Deployment', 
                             //parameters: [

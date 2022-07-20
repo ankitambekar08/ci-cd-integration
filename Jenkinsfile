@@ -8,7 +8,7 @@ pipeline {
 
     //Define Fixed Parameter
     //parameters {
-   //     choicee(name: 'ref', choices:['integration'], description: 'Github branch for deployment')
+   //     choiceee(name: 'ref', choices:['integration'], description: 'Github branch for deployment')
     //}
 
     options {

@@ -7,9 +7,9 @@ pipeline {
     }
 
     //Define Fixed Parameter
-    //parameters {
-   //     choiceee(name: 'ref', choices:['integration'], description: 'Github branch for deployment')
-    //}
+    parameters {
+        choiceee(name: 'ref', choices:['integration'], description: 'Github branch for deployment')
+    }
 
     options {
         buildDiscarder logRotator( 
@@ -30,7 +30,7 @@ pipeline {
         stage('Check Environment And PR Status') {
             steps{
                 script{
-                    if(params.current_status == "closed" && params.merged == true){
+                    if(params.pull_request_status == "closed" && params.merged_status == true){
                         if(params.ref == 'integration') {
                             echo "Requested PR is merged"
                             //build job: 'Integration_Deployment', 

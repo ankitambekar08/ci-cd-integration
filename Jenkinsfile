@@ -7,9 +7,9 @@ pipeline {
     }
 
     //Define Fixed Parameter
-    //parameters {
-   //     choice(name: 'ref', choices:['integration'], description: 'Github branch for deployment')
-    //}
+    parameters {
+        choice(name: 'ref', choices:['development'], description: 'Github branch for deployment')
+    }
 
     options {
         buildDiscarder logRotator( 
@@ -20,7 +20,7 @@ pipeline {
 
     stages {
            
-        stage('Cleanup Workspace') {
+        stage('Cleanup Workspacee') {
             steps {
                 cleanWs()
                 echo "Cleaneed Up Workspace For Project"
@@ -30,8 +30,8 @@ pipeline {
         stage('Check Environment And PR Status') {
             steps{
                 script{
-                    if(params.current_status == "closed" && params.merged == true){
-                        if(params.ref == 'integration') {
+                    if(params.pull_request_status == "closed" && params.merged_status == true){
+                        if(params.ref == 'development') {
                             echo "Requested PR is merged"
                             //build job: 'Integration_Deployment', 
                             //parameters: [

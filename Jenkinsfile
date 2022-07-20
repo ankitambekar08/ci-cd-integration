@@ -32,7 +32,7 @@ pipeline {
                 script{
                     if(params.pull_request_status == "closed" && params.merged_status == true){
                         if(params.ref == 'development') {
-                            echo "Reqfuested PR is merged"
+                            echo "Reqfuested PR is merged successfully"
                             //build job: 'Integration_Deployment', 
                             //parameters: [
                                 //string(name: 'BRANCH_NAME', value: params.ref)
